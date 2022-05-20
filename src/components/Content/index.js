@@ -1,25 +1,26 @@
 import React, { useEffect } from 'react';
-import { showPopularMovies } from '../../Redux/actions';
+import { getDataList } from '../../Redux/actions';
 import './Content.sass';
 import { connect } from 'react-redux';
 import ContentItem from './ContentItem';
 
-const mapState = (state) => {
+const mapState = (state, {actionType}) => {
     return {
-      data: state.data,
-      ContentItem
+		data: state.data,
+		ContentItem,
+		actionType
     }
 }
 
-const mapDispatch = (dispatch) => {
-  return {
-    showPopularList: () => dispatch(showPopularMovies())
-  }
+const mapDispatch = (dispatch, {actionType}) => {
+	return {
+		getList: () => dispatch(getDataList(actionType))
+	}
 }
 
-const Content = ({data, showPopularList, ContentItem}) => {
+const Content = ({data, getList, ContentItem}) => {
     useEffect(() => {
-        return showPopularList()
+        return getList()
 		// eslint-disable-next-line
     }, [])
 
