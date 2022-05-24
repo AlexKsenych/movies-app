@@ -3,6 +3,8 @@ import axios from "axios";
 const API_KEY = 'api_key=a159c9a67088679cbfca53df641e55c2',
       LANGUAGE = 'language=en-US';
 
+const movieId = '2 - 996';
+
 const getList = async (type, page = 1) => {
     return await axios(`https://api.themoviedb.org/3/${type}?${API_KEY}&${LANGUAGE}&page=${page}`).then(
         res => res.data.results
