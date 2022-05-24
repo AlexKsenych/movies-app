@@ -18,11 +18,11 @@ const mapDispatch = (dispatch, {actionType}) => {
 	}
 }
 
-const Content = ({data, getList, ContentItem}) => {
+const Content = ({data, getList, ContentItem, actionType}) => {
     useEffect(() => {
         return getList()
 		// eslint-disable-next-line
-    }, [])
+    }, [actionType])
 
     useEffect(() => {
         console.log(data)
