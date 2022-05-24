@@ -3,10 +3,11 @@ import { getDataList } from '../../Redux/actions';
 import './Content.sass';
 import { connect } from 'react-redux';
 import ContentItem from './ContentItem';
+import Loading from '../../assets/Loading';
 
-const mapState = (state, {actionType}) => {
+const mapState = ({data}, {actionType}) => {
     return {
-		data: state.data,
+		data,
 		ContentItem,
 		actionType
     }
@@ -28,7 +29,7 @@ const Content = ({data, getList, ContentItem, actionType}) => {
         console.log(data)
     }, [data])
 
-	const value = data ? <ContentItem data={data}/> : 'no data';
+	const value = data ? <ContentItem data={data}/> : <Loading/>;
 
     return (
       <main className='content'>
