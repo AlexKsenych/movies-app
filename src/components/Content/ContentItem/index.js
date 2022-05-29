@@ -14,7 +14,7 @@ const ContentItem = ({data}) => {
 		let title = original_title ? original_title : original_name;
 
 		if (title.length > 32) {
-			title =  title.slice(0, 32) + '...'
+			title = title.slice(0, 32) + '...'
 		}
 
 		return (
