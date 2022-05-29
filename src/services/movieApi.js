@@ -10,8 +10,8 @@ const getList = async (type, pageId = 1) => {
     )
 }
 
-const getMovie = async (id) => {
-    return await axios(`${API_PATH}/movie/${id}?${API_KEY}&${LANGUAGE}`).then(
+const getItem = async (type, id) => {
+    return await axios(`${API_PATH}/${type}/${id}?${API_KEY}&${LANGUAGE}`).then(
         res => res.data
     )
 }
@@ -25,7 +25,9 @@ export default function getData(type, id) {
         case 'tvShows':
             return getList('tv/popular');
         case 'movie':
-            return getMovie(id);
+            return getItem('movie', id);
+        case 'tvShow':
+            return getItem('tv', id);
         default:
             return getList('movie/popular');
     }

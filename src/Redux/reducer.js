@@ -1,31 +1,25 @@
 import { combineReducers } from "redux";
 
-const filmListReducer = (store = [], action) => {
+const itemListReducer = (store = [], action) => {
     const {type, data} = action;
 
     switch(type) {
-        case 'POPULAR_MOVIES':
-            return [...data]
-        case 'TOP_MOVIES': 
-            return [...data]
-        case 'NEW_MOVIES':
-            return [...data]
-        case 'TV_SHOWS':
+        case 'SET_LIST':
             return [...data]
         default:
             return store
     }
 }
 
-const currentFilmReducer = (store = {}, action) => {
+const currentItemReducer = (store = {}, action) => {
     const {type, data} = action;
 
     switch(type) {
-        case 'MOVIE':
+        case 'SET_ITEM':
             return {
                 ...data
             }
-        case 'CLEAR_MOVIE':
+        case 'CLEAR_ITEM':
             return {}
         default:
             return store
@@ -33,8 +27,8 @@ const currentFilmReducer = (store = {}, action) => {
 }
 
 const rootReducer = combineReducers({
-    filmList: filmListReducer,
-    currentFilm: currentFilmReducer
+    itemList: itemListReducer,
+    currentItem: currentItemReducer
 })
 
 export default rootReducer;

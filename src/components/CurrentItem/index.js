@@ -2,15 +2,15 @@ import './CurrentItem.sass';
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getMovie, CLEAR_MOVIE } from '../../Redux/actions';
+import { getItem, CLEAR_ITEM } from '../../Redux/actions';
 import Loading from '../../assets/Loading';
 
-const mapState = ({currentFilm}) => {
-    const {title, overview, popularity, backdrop_path,
-    release_date, vote_average} = currentFilm;
+const mapState = ({currentItem}) => {
+    const {name, title, overview, popularity, 
+    backdrop_path, release_date, vote_average} = currentItem;
 
     return {
-        title,
+        title: title ? title : name,
         img: `https://image.tmdb.org/t/p/w500${backdrop_path}`,
         overview,
         popularity,
@@ -19,19 +19,19 @@ const mapState = ({currentFilm}) => {
     }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, {actionType}) => {
     return {
-        dispatch: (id) => dispatch(getMovie(id)),
-        clearMovie: () => dispatch(CLEAR_MOVIE())
+        dispatch: (id) => dispatch(getItem(actionType, id)),
+        clearItem: () => dispatch(CLEAR_ITEM())
     }
 }
 
-const CurrentItem = ({title, img, overview, popularity, date, rating, dispatch, clearMovie}) => {
+const CurrentItem = ({title, img, overview, popularity, date, rating, dispatch, clearItem}) => {
     const {id} = useParams();
 
     useEffect(() => {
         dispatch(id);
-        return clearMovie;
+        return clearItem;
         // eslint-disable-next-line
     }, [id])
 

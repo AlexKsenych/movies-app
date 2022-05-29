@@ -14,7 +14,8 @@ function App() {
         <Route path='/newmovies' element={<Content actionType='newMovies'/>}/>
         <Route path='/tvshows' element={<Content actionType='tvShows'/>}/>
         <Route path='/random'/>
-        <Route path='/movie/:id' element={<CurrentItem/>}/>
+        <Route path='/movie/:id' element={<CurrentItem actionType='movie'/>}/>
+        <Route path='/tvshow/:id' element={<CurrentItem actionType='tvShow'/>}/>
       </Routes>
     </div>
   );

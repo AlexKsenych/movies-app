@@ -1,65 +1,37 @@
 import getData from "../services/movieApi"
 
-function POPULAR_MOVIES(data) {
+function SET_LIST(data) {
     return {
-        type: 'POPULAR_MOVIES',
+        type: 'SET_LIST',
         data
     }
 }
 
-function TOP_MOVIES(data) {
+function SET_ITEM(data) {
     return {
-        type: 'TOP_MOVIES',
+        type: 'SET_ITEM',
         data
     }
 }
 
-function NEW_MOVIES(data) {
+export function CLEAR_ITEM() {
     return {
-        type: 'NEW_MOVIES',
-        data
-    }
-}
-
-function TV_SHOWS(data) {
-    return {
-        type: 'TV_SHOWS',
-        data
-    }
-}
-
-function MOVIE(data) {
-    return {
-        type: 'MOVIE',
-        data
-    }
-}
-
-export function CLEAR_MOVIE() {
-    return {
-        type: 'CLEAR_MOVIE'
+        type: 'CLEAR_ITEM'
     }
 }
 
 export function getDataList(type = 'popular') {
-    const action = (type, value) => {
-        if (type === 'popular') return POPULAR_MOVIES(value);
-        if (type === 'top') return TOP_MOVIES(value);
-        if (type === 'newMovies') return NEW_MOVIES(value);
-        if (type === 'tvShows') return TV_SHOWS(value);
-    }
-
     return (dispatch) => {
         getData(type).then(
-            res => dispatch(action(type, res))
+            res => dispatch(SET_LIST(res))
         )
     }
 }
 
-export function getMovie(id) {
+export function getItem(type = 'movie', id) {
     return (dispatch) => {
-        getData('movie', id).then(
-            res => dispatch(MOVIE(res))
+        getData(type, id).then(
+            res => dispatch(SET_ITEM(res))
         )
     }
 }
