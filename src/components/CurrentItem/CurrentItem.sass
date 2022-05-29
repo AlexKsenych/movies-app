@@ -1,0 +1,25 @@
+.currentFilm
+    display: grid
+    grid-template-columns: 525px 1fr
+    grid-template-rows: 310px 30px
+    grid-template-areas: 'img descr' 'rate descr'
+    color: #dbdbdb
+    &__img
+        grid-area: img
+        width: 500px
+        max-height: 300px
+        display: block
+        margin: auto
+    &__descr
+        grid-area: descr
+        padding: 10px 5px
+        &__title
+            font-size: 20px
+        &__date
+            margin-bottom: 7px
+    &__rating
+        padding: 0 15px
+        grid-area: rate
+        display: flex
+        justify-content: space-around
+        font-size: 18px

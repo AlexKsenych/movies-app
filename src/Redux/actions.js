@@ -28,6 +28,19 @@ function TV_SHOWS(data) {
     }
 }
 
+function MOVIE(data) {
+    return {
+        type: 'MOVIE',
+        data
+    }
+}
+
+export function CLEAR_MOVIE() {
+    return {
+        type: 'CLEAR_MOVIE'
+    }
+}
+
 export function getDataList(type = 'popular') {
     const action = (type, value) => {
         if (type === 'popular') return POPULAR_MOVIES(value);
@@ -39,6 +52,14 @@ export function getDataList(type = 'popular') {
     return (dispatch) => {
         getData(type).then(
             res => dispatch(action(type, res))
+        )
+    }
+}
+
+export function getMovie(id) {
+    return (dispatch) => {
+        getData('movie', id).then(
+            res => dispatch(MOVIE(res))
         )
     }
 }

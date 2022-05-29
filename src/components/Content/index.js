@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import ContentItem from './ContentItem';
 import Loading from '../../assets/Loading';
 
-const mapState = ({data}, {actionType}) => {
+const mapState = ({filmList}, {actionType}) => {
     return {
-		data,
+		filmList,
 		ContentItem,
 		actionType
     }
@@ -19,17 +19,13 @@ const mapDispatch = (dispatch, {actionType}) => {
 	}
 }
 
-const Content = ({data, getList, ContentItem, actionType}) => {
+const Content = ({filmList, getList, ContentItem, actionType}) => {
     useEffect(() => {
-        return getList()
+        getList()
 		// eslint-disable-next-line
     }, [actionType])
 
-    useEffect(() => {
-        console.log(data)
-    }, [data])
-
-	const value = data ? <ContentItem data={data}/> : <Loading/>;
+	const value = filmList ? <ContentItem data={filmList}/> : <Loading/>;
 
     return (
       <main className='content'>

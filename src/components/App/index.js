@@ -2,6 +2,7 @@ import './App.sass';
 import Header from '../Header';
 import Content from '../Content';
 import { Routes, Route } from 'react-router-dom';
+import CurrentItem from '../CurrentItem';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/newmovies' element={<Content actionType='newMovies'/>}/>
         <Route path='/tvshows' element={<Content actionType='tvShows'/>}/>
         <Route path='/random'/>
+        <Route path='/movie/:id' element={<CurrentItem/>}/>
       </Routes>
     </div>
   );

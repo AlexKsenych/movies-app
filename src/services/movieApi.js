@@ -1,19 +1,32 @@
 import axios from "axios";
 
-const API_KEY = 'api_key=a159c9a67088679cbfca53df641e55c2',
+const API_PATH = 'https://api.themoviedb.org/3',
+      API_KEY = 'api_key=a159c9a67088679cbfca53df641e55c2',
       LANGUAGE = 'language=en-US';
 
-const movieId = '2 - 996';
-
-const getList = async (type, page = 1) => {
-    return await axios(`https://api.themoviedb.org/3/${type}?${API_KEY}&${LANGUAGE}&page=${page}`).then(
+const getList = async (type, pageId = 1) => {
+    return await axios(`${API_PATH}/${type}?${API_KEY}&${LANGUAGE}&page=${pageId}`).then(
         res => res.data.results
     )
 }
 
-export default function getData(type = 'popular') {
-    if (type === 'popular') return getList('movie/popular');
-    if (type === 'top') return getList('movie/top_rated');
-    if (type === 'newMovies') return getList('movie/upcoming');
-    if (type === 'tvShows') return getList('tv/popular');
+const getMovie = async (id) => {
+    return await axios(`${API_PATH}/movie/${id}?${API_KEY}&${LANGUAGE}`).then(
+        res => res.data
+    )
+}
+
+export default function getData(type, id) {
+    switch(type) {
+        case 'top':
+            return getList('movie/top_rated');
+        case 'newMovies':
+            return getList('movie/upcoming');
+        case 'tvShows':
+            return getList('tv/popular');
+        case 'movie':
+            return getMovie(id);
+        default:
+            return getList('movie/popular');
+    }
 }
