@@ -6,23 +6,8 @@ import { getItem, CLEAR_ITEM } from '../../Redux/actions'
 import Loading from '../../assets/Loading'
 
 const mapState = ({ currentItem }) => {
-    const {
-        name,
-        title,
-        overview,
-        popularity,
-        backdrop_path,
-        release_date,
-        vote_average,
-    } = currentItem
-
     return {
-        title: title ? title : name,
-        img: `https://image.tmdb.org/t/p/w500${backdrop_path}`,
-        overview,
-        popularity,
-        date: release_date,
-        rating: vote_average,
+        ...currentItem,
     }
 }
 
@@ -35,7 +20,7 @@ const mapDispatch = (dispatch, { actionType }) => {
 
 const CurrentItem = ({
     title,
-    img,
+    image,
     overview,
     popularity,
     date,
@@ -53,7 +38,7 @@ const CurrentItem = ({
 
     return title ? (
         <main className='currentFilm'>
-            <img className='currentFilm__img' src={img} alt='filmImage' />
+            <img className='currentFilm__img' src={image} alt='filmImage' />
             <div className='currentFilm__descr'>
                 <div className='currentFilm__descr__title'>{title}</div>
                 <div className='currentFilm__descr__date'>{date}</div>

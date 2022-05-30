@@ -12,15 +12,12 @@ const ContentItem = ({ data }) => {
     }
 
     return data.map((item) => {
-        const { title, name, vote_average, backdrop_path, id } = item
+        const { rating, image, id } = item
+        let { title } = item
 
-        let itemName = title ? title : name
-
-        if (itemName.length > 32) {
-            itemName = title.slice(0, 32) + '...'
+        if (title.length > 32) {
+            title = title.slice(0, 32) + '...'
         }
-
-        const img = `https://image.tmdb.org/t/p/w500${backdrop_path}`
 
         return (
             <div
@@ -28,12 +25,10 @@ const ContentItem = ({ data }) => {
                 onClick={() => navigateTo(id)}
                 key={id}
             >
-                <img src={img} alt='img' className='content__item__img' />
+                <img src={image} alt='img' className='content__item__img' />
                 <div className='content__item__descr'>
-                    <p className='content__item__descr__title'>{itemName}</p>
-                    <p className='content__item__descr__rating'>
-                        {vote_average}
-                    </p>
+                    <p className='content__item__descr__title'>{title}</p>
+                    <p className='content__item__descr__rating'>{rating}</p>
                 </div>
             </div>
         )
