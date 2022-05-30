@@ -1,6 +1,7 @@
 import React from 'react'
 import './Header.sass'
 import { NavLink } from 'react-router-dom'
+import HeaderSearch from './HeaderSearch'
 
 const Header = () => {
     const getClassName = (isActive) => {
@@ -38,7 +39,7 @@ const Header = () => {
                     Random
                 </NavLink>
             </nav>
-            <input className='header__search' type='text' />
+            <HeaderSearch />
         </header>
     )
 }

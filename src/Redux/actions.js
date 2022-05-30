@@ -26,9 +26,9 @@ export function CLEAR_ITEM() {
     }
 }
 
-export function getDataList(type = 'popular') {
+export function getDataList(type = 'popular', page = 1, search) {
     return (dispatch) => {
-        getData(type).then((res) => dispatch(SET_LIST(res)))
+        getData(type, page, search).then((res) => dispatch(SET_LIST(res)))
     }
 }
 

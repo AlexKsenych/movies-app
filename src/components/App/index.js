@@ -22,14 +22,18 @@ function App() {
                     path='/tvshows'
                     element={<Content actionType='tvShows' />}
                 />
+                <Route
+                    path='/search'
+                    element={<Content actionType='search' />}
+                />
                 <Route path='/random' />
                 <Route
                     path='/movie/:id'
                     element={<CurrentItem actionType='movie' />}
                 />
                 <Route
-                    path='/tvshow/:id'
-                    element={<CurrentItem actionType='tvShow' />}
+                    path='/tv/:id'
+                    element={<CurrentItem actionType='tv' />}
                 />
             </Routes>
         </div>

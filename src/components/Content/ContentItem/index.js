@@ -5,14 +5,14 @@ const ContentItem = ({ data }) => {
     const navigate = useNavigate()
     const pathMatch = useMatch('/tvshows')
 
-    const navigateTo = (id) => {
-        const path = !!pathMatch ? 'tvshow' : 'movie'
+    const navigateTo = (id, type) => {
+        const path = !!pathMatch ? 'tv' : 'movie'
 
-        navigate(`/${path}/${id}`, { replace: true })
+        navigate(`/${type ? type : path}/${id}`, { replace: true })
     }
 
     return data.map((item) => {
-        const { rating, image, id } = item
+        const { rating, image, id, type } = item
         let { title } = item
 
         if (title.length > 32) {
@@ -22,7 +22,7 @@ const ContentItem = ({ data }) => {
         return (
             <div
                 className='content__item'
-                onClick={() => navigateTo(id)}
+                onClick={() => navigateTo(id, type)}
                 key={id}
             >
                 <img src={image} alt='img' className='content__item__img' />
