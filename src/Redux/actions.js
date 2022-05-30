@@ -14,6 +14,12 @@ function SET_ITEM(data) {
     }
 }
 
+export function CLEAR_LIST() {
+    return {
+        type: 'CLEAR_LIST'
+    }
+}
+
 export function CLEAR_ITEM() {
     return {
         type: 'CLEAR_ITEM'

@@ -20,9 +20,11 @@ const ContentItem = ({data}) => {
 			itemName = title.slice(0, 32) + '...'
 		}
 
+		const img = `https://image.tmdb.org/t/p/w500${backdrop_path}`;
+
 		return (
 			<div className="content__item" onClick={() => navigateTo(id)} key={id}>
-				<img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} alt="img" className="content__item__img" />
+				<img src={img} alt="img" className="content__item__img" />
 				<div className="content__item__descr">
 					<p className="content__item__descr__title">{itemName}</p>
 					<p className="content__item__descr__rating">{vote_average}</p>

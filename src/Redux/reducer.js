@@ -6,6 +6,8 @@ const itemListReducer = (store = [], action) => {
     switch(type) {
         case 'SET_LIST':
             return [...data]
+        case 'CLEAR_LIST':
+            return []
         default:
             return store
     }
@@ -16,9 +18,7 @@ const currentItemReducer = (store = {}, action) => {
 
     switch(type) {
         case 'SET_ITEM':
-            return {
-                ...data
-            }
+            return {...data}
         case 'CLEAR_ITEM':
             return {}
         default:
