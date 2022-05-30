@@ -1,9 +1,9 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux'
 
 const itemListReducer = (store = [], action) => {
-    const {type, data} = action;
+    const { type, data } = action
 
-    switch(type) {
+    switch (type) {
         case 'SET_LIST':
             return [...data]
         case 'CLEAR_LIST':
@@ -14,11 +14,11 @@ const itemListReducer = (store = [], action) => {
 }
 
 const currentItemReducer = (store = {}, action) => {
-    const {type, data} = action;
+    const { type, data } = action
 
-    switch(type) {
+    switch (type) {
         case 'SET_ITEM':
-            return {...data}
+            return { ...data }
         case 'CLEAR_ITEM':
             return {}
         default:
@@ -28,7 +28,7 @@ const currentItemReducer = (store = {}, action) => {
 
 const rootReducer = combineReducers({
     itemList: itemListReducer,
-    currentItem: currentItemReducer
+    currentItem: currentItemReducer,
 })
 
-export default rootReducer;
+export default rootReducer

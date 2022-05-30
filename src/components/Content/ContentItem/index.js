@@ -1,37 +1,43 @@
-import React from 'react';
-import { useMatch, useNavigate } from 'react-router-dom';
+import React from 'react'
+import { useMatch, useNavigate } from 'react-router-dom'
 
-const ContentItem = ({data}) => {
-	const navigate = useNavigate();
-	const pathMatch = useMatch('/tvshows');
+const ContentItem = ({ data }) => {
+    const navigate = useNavigate()
+    const pathMatch = useMatch('/tvshows')
 
-	const navigateTo = (id) => {
-		const path = !!pathMatch ? 'tvshow' : 'movie';
+    const navigateTo = (id) => {
+        const path = !!pathMatch ? 'tvshow' : 'movie'
 
-		navigate(`/${path}/${id}`, { replace: true });
-	}
+        navigate(`/${path}/${id}`, { replace: true })
+    }
 
-  	return data.map(item => {
-    	const {title, name, vote_average, backdrop_path, id} = item;
+    return data.map((item) => {
+        const { title, name, vote_average, backdrop_path, id } = item
 
-		let itemName = title ? title : name;
+        let itemName = title ? title : name
 
-		if (itemName.length > 32) {
-			itemName = title.slice(0, 32) + '...'
-		}
+        if (itemName.length > 32) {
+            itemName = title.slice(0, 32) + '...'
+        }
 
-		const img = `https://image.tmdb.org/t/p/w500${backdrop_path}`;
+        const img = `https://image.tmdb.org/t/p/w500${backdrop_path}`
 
-		return (
-			<div className="content__item" onClick={() => navigateTo(id)} key={id}>
-				<img src={img} alt="img" className="content__item__img" />
-				<div className="content__item__descr">
-					<p className="content__item__descr__title">{itemName}</p>
-					<p className="content__item__descr__rating">{vote_average}</p>
-				</div>
-			</div>
-		)
-  	})
+        return (
+            <div
+                className='content__item'
+                onClick={() => navigateTo(id)}
+                key={id}
+            >
+                <img src={img} alt='img' className='content__item__img' />
+                <div className='content__item__descr'>
+                    <p className='content__item__descr__title'>{itemName}</p>
+                    <p className='content__item__descr__rating'>
+                        {vote_average}
+                    </p>
+                </div>
+            </div>
+        )
+    })
 }
 
-export default ContentItem;
+export default ContentItem
