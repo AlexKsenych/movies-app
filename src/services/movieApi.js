@@ -5,15 +5,17 @@ const API_PATH = 'https://api.themoviedb.org/3',
     API_KEY = 'api_key=a159c9a67088679cbfca53df641e55c2',
     LANGUAGE = 'language=en-US'
 
-const getList = async (type, pageId = 1, query) => {
+const getList = (type, pageId, query) => {
     const search = type === 'search/multi' ? `&query=${query}` : ''
 
-    return await axios(
+    return axios(
         `${API_PATH}/${type}?${API_KEY}&${LANGUAGE}&page=${pageId}${search}`
     )
-        .then((res) => res.data.results)
-        .then((res) =>
-            res.map((item) => {
+        .then((res) => {
+            return { data: res.data.results, pages: res.data.total_pages }
+        })
+        .then((res) => {
+            const data = res.data.map((item) => {
                 const {
                     title,
                     name,
@@ -36,11 +38,16 @@ const getList = async (type, pageId = 1, query) => {
                     id,
                 }
             })
-        )
+
+            return {
+                data,
+                pages: res.pages,
+            }
+        })
 }
 
-const getItem = async (type, id) => {
-    return await axios(`${API_PATH}/${type}/${id}?${API_KEY}&${LANGUAGE}`)
+const getItem = (type, id) => {
+    return axios(`${API_PATH}/${type}/${id}?${API_KEY}&${LANGUAGE}`)
         .then((res) => res.data)
         .then((res) => {
             const {
@@ -71,11 +78,11 @@ const getItem = async (type, id) => {
 export default function getData(type, id, query) {
     switch (type) {
         case 'top':
-            return getList('movie/top_rated')
+            return getList('movie/top_rated', id)
         case 'newMovies':
-            return getList('movie/upcoming')
+            return getList('movie/upcoming', id)
         case 'tvShows':
-            return getList('tv/popular')
+            return getList('tv/popular', id)
         case 'search':
             return getList('search/multi', id, query)
         case 'movie':
@@ -83,6 +90,6 @@ export default function getData(type, id, query) {
         case 'tv':
             return getItem('tv', id)
         default:
-            return getList('movie/popular')
+            return getList('movie/popular', id)
     }
 }

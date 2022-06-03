@@ -1,7 +1,7 @@
 import React from 'react'
 import { useMatch, useNavigate } from 'react-router-dom'
 
-const ContentItem = ({ data }) => {
+const ContentItem = ({ data, lastElemRef }) => {
     const navigate = useNavigate()
     const pathMatch = useMatch('/tvshows')
 
@@ -11,7 +11,7 @@ const ContentItem = ({ data }) => {
         navigate(`/${type ? type : path}/${id}`, { replace: true })
     }
 
-    return data.map((item) => {
+    return data.map((item, i) => {
         const { rating, image, id, type } = item
         let { title } = item
 
@@ -19,11 +19,14 @@ const ContentItem = ({ data }) => {
             title = title.slice(0, 32) + '...'
         }
 
+        const isLastElem = data.length - 1 === i ? lastElemRef : null
+
         return (
             <div
                 className='content__item'
                 onClick={() => navigateTo(id, type)}
                 key={id}
+                ref={isLastElem}
             >
                 <img src={image} alt='img' className='content__item__img' />
                 <div className='content__item__descr'>

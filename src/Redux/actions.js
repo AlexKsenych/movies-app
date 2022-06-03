@@ -1,9 +1,18 @@
 import getData from '../services/movieApi'
 
-function SET_LIST(data) {
+export function SET_LIST({ data, pages }) {
     return {
         type: 'SET_LIST',
         data,
+        pages,
+    }
+}
+
+export function ADD_LIST({ data, pages }) {
+    return {
+        type: 'ADD_LIST',
+        data,
+        pages,
     }
 }
 
@@ -26,9 +35,15 @@ export function CLEAR_ITEM() {
     }
 }
 
-export function getDataList(type = 'popular', page = 1, search) {
-    return (dispatch) => {
-        getData(type, page, search).then((res) => dispatch(SET_LIST(res)))
+export function getDataList(type = 'popular', action, query) {
+    return (dispatch, getState) => {
+        const {
+            itemList: { nextPage },
+        } = getState()
+
+        const page = action === SET_LIST ? 1 : nextPage
+
+        getData(type, page, query).then((res) => dispatch(action(res)))
     }
 }
 
