@@ -9,15 +9,15 @@ function App() {
         <div className='app'>
             <Header />
             <Routes>
-                <Route path='/' element={<Content />} />
-                <Route path='/tv' element={<Content />} />
-                <Route path='/search' element={<Content />} />
+                <Route path='/movies-app/' element={<Content />} />
+                <Route path='/movies-app/tv' element={<Content />} />
+                <Route path='/movies-app/search' element={<Content />} />
                 <Route
-                    path='/movie/:id'
+                    path='/movies-app/movie/:id'
                     element={<CurrentItem actionType='movie' />}
                 />
                 <Route
-                    path='/tv/:id'
+                    path='/movies-app/tv/:id'
                     element={<CurrentItem actionType='tv' />}
                 />
             </Routes>

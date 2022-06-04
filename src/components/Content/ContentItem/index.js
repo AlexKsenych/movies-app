@@ -3,7 +3,7 @@ import { useMatch, useNavigate } from 'react-router-dom'
 
 const ContentItem = ({ data, lastElemRef }) => {
     const navigate = useNavigate()
-    const pathMatch = !!useMatch('/tv')
+    const pathMatch = !!useMatch('/movies-app/tv')
 
     const navigateTo = (id, type) => {
         const path = pathMatch ? 'tv' : 'movie'

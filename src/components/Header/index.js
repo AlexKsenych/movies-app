@@ -13,13 +13,13 @@ const Header = () => {
             <div className='header__logo'>MOVIES-APP</div>
             <nav className='header__nav'>
                 <NavLink
-                    to='/'
+                    to='/movies-app/'
                     className={({ isActive }) => getClassName(isActive)}
                 >
                     Movies
                 </NavLink>
                 <NavLink
-                    to='/tv'
+                    to='/movies-app/tv'
                     className={({ isActive }) => getClassName(isActive)}
                 >
                     TV Shows

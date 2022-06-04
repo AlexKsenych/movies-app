@@ -12,7 +12,7 @@ const Search = () => {
         }
 
         if (query.length === 3) {
-            navigate(`/search?query=${query}`, { replace: true })
+            navigate(`/movies-app/search?query=${query}`, { replace: true })
         }
         // eslint-disable-next-line
     }, [query])

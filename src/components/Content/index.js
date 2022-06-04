@@ -41,8 +41,8 @@ const Content = ({
     const [searchParams] = useSearchParams()
     const query = searchParams.get('query')
 
-    const isTV = !!useMatch('/tv'),
-        isSearch = !!useMatch('/search')
+    const isTV = !!useMatch('/movies-app/tv'),
+        isSearch = !!useMatch('/movies-app/search')
 
     const requestType = isTV ? `tv/${select}` : `movie/${select}`
 
