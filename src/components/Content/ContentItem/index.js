@@ -8,7 +8,7 @@ const ContentItem = ({ data, lastElemRef }) => {
     const navigateTo = (id, type) => {
         const path = pathMatch ? 'tv' : 'movie'
 
-        navigate(`/${type ? type : path}/${id}`, { replace: true })
+        navigate(`/movies-app/${type ? type : path}/${id}`, { replace: true })
     }
 
     return data.map((item, i) => {
