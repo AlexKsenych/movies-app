@@ -35,7 +35,7 @@ export function CLEAR_ITEM() {
     }
 }
 
-export function getDataList(type = 'popular', action, query) {
+export function getDataList(type = 'movie/popular', action, query) {
     return (dispatch, getState) => {
         const {
             itemList: { nextPage },

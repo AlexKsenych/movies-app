@@ -76,13 +76,9 @@ const getItem = (type, id) => {
 }
 
 export default function getData(type, id, query) {
+    console.log(type)
+
     switch (type) {
-        case 'top':
-            return getList('movie/top_rated', id)
-        case 'newMovies':
-            return getList('movie/upcoming', id)
-        case 'tvShows':
-            return getList('tv/popular', id)
         case 'search':
             return getList('search/multi', id, query)
         case 'movie':
@@ -90,6 +86,6 @@ export default function getData(type, id, query) {
         case 'tv':
             return getItem('tv', id)
         default:
-            return getList('movie/popular', id)
+            return getList(type, id)
     }
 }

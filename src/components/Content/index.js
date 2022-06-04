@@ -8,22 +8,22 @@ import {
 import './Content.sass'
 import { connect } from 'react-redux'
 import ContentItem from './ContentItem'
+import ContentSelect from './ContentSelect'
 import Loading from '../../assets/Loading'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, useMatch } from 'react-router-dom'
 
-const mapState = ({ itemList: { data, hasMore } }, { actionType }) => {
+const mapState = ({ itemList: { data, hasMore } }) => {
     return {
         data: [...new Set(data)],
         hasMore,
         ContentItem,
-        actionType,
     }
 }
 
-const mapDispatch = (dispatch, { actionType }) => {
+const mapDispatch = (dispatch) => {
     return {
-        getList: (query) => dispatch(getDataList(actionType, SET_LIST, query)),
-        addList: () => dispatch(getDataList(actionType, ADD_LIST)),
+        getList: (type, query) => dispatch(getDataList(type, SET_LIST, query)),
+        addList: (type) => dispatch(getDataList(type, ADD_LIST)),
         clearList: () => dispatch(CLEAR_LIST()),
     }
 }
@@ -35,21 +35,26 @@ const Content = ({
     addList,
     clearList,
     ContentItem,
-    actionType,
 }) => {
     const [loading, setLoading] = useState(true)
+    const [select, setSelect] = useState('popular')
     const [searchParams] = useSearchParams()
     const query = searchParams.get('query')
+
+    const isTV = !!useMatch('/tv'),
+        isSearch = !!useMatch('/search')
+
+    const requestType = isTV ? `tv/${select}` : `movie/${select}`
 
     const observer = useRef()
     const lastElemRef = useCallback(
         (elem) => {
-            if (loading || actionType === 'search') return
+            if (loading || isSearch) return
             if (observer.current) observer.current.disconnect()
             observer.current = new IntersectionObserver((entries) => {
                 if (entries[0].isIntersecting && hasMore) {
                     setLoading(true)
-                    addList()
+                    addList(requestType)
                 }
             })
             if (elem) observer.current.observe(elem)
@@ -59,24 +64,40 @@ const Content = ({
     )
 
     useEffect(() => {
-        getList()
+        getList(requestType)
         return clearList
         // eslint-disable-next-line
-    }, [actionType])
+    }, [select, requestType])
 
     useEffect(() => {
         if (query) {
-            getList(query)
+            getList('search', query)
         }
         // eslint-disable-next-line
     }, [query])
 
     useEffect(() => {
-        if (data) setLoading(false)
+        if (data) return setLoading(false)
+        setLoading(true)
     }, [data])
+
+    useEffect(() => {
+        setSelect('popular')
+    }, [isTV])
+
+    const onSelect = (e) => {
+        setSelect(e.target.value)
+    }
 
     return (
         <main className='content'>
+            {!isSearch && (
+                <ContentSelect
+                    onSelect={onSelect}
+                    select={select}
+                    isTV={isTV}
+                />
+            )}
             {data && <ContentItem data={data} lastElemRef={lastElemRef} />}
             {loading && <Loading />}
         </main>

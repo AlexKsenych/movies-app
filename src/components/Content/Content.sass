@@ -1,8 +1,20 @@
 .content
-    padding: 5px
+    padding: 20px 5px 5px 5px
     display: flex
+    position: relative
     justify-content: space-around
     flex-wrap: wrap
+    &__select
+        position: absolute
+        top: 0
+        right: 0
+        text-align: center
+        width: 100px
+        height: 20px
+        border: none
+        outline: none
+        background-color: #fff
+        border-radius: 0px 0px 0px 12px
     &__item
         width: 300px
         height: 230px
@@ -11,12 +23,18 @@
         grid-template-rows: 1fr 30px
         grid-template-areas: 'img' 'descr'
         margin: 5px
-        background-color: #999898
+        background-color: #ffffff
         cursor: pointer
+        border-radius: 8px
         &__img
             grid-area: img
+            border-radius: 8px
             width: 300px
             height: 200px
+            box-shadow: 0 7px 10px -4px black
+            transition: 0.7s all
+            &:hover
+                box-shadow: none
         &__descr
             grid-area: descr
             width: 100%

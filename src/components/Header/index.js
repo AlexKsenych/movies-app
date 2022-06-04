@@ -10,33 +10,19 @@ const Header = () => {
 
     return (
         <header className='header'>
-            <NavLink to='/' className='header__logo'>
-                Movie
-            </NavLink>
+            <div className='header__logo'>MOVIES-APP</div>
             <nav className='header__nav'>
                 <NavLink
-                    to='/topmovies'
+                    to='/'
                     className={({ isActive }) => getClassName(isActive)}
                 >
-                    Top
+                    Movies
                 </NavLink>
                 <NavLink
-                    to='/newmovies'
+                    to='/tv'
                     className={({ isActive }) => getClassName(isActive)}
                 >
-                    New Movies
-                </NavLink>
-                <NavLink
-                    to='/tvshows'
-                    className={({ isActive }) => getClassName(isActive)}
-                >
-                    Shows
-                </NavLink>
-                <NavLink
-                    to='/random'
-                    className={({ isActive }) => getClassName(isActive)}
-                >
-                    Random
+                    TV Shows
                 </NavLink>
             </nav>
             <HeaderSearch />

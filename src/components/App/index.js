@@ -10,23 +10,8 @@ function App() {
             <Header />
             <Routes>
                 <Route path='/' element={<Content />} />
-                <Route
-                    path='/topmovies'
-                    element={<Content actionType='top' />}
-                />
-                <Route
-                    path='/newmovies'
-                    element={<Content actionType='newMovies' />}
-                />
-                <Route
-                    path='/tvshows'
-                    element={<Content actionType='tvShows' />}
-                />
-                <Route
-                    path='/search'
-                    element={<Content actionType='search' />}
-                />
-                <Route path='/random' />
+                <Route path='/tv' element={<Content />} />
+                <Route path='/search' element={<Content />} />
                 <Route
                     path='/movie/:id'
                     element={<CurrentItem actionType='movie' />}
