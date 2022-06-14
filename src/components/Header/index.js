@@ -10,7 +10,9 @@ const Header = () => {
 
     return (
         <header className='header'>
-            <div className='header__logo'>MOVIES-APP</div>
+            <NavLink to='/movies-app/' className='header__logo'>
+                MOVIES-APP
+            </NavLink>
             <nav className='header__nav'>
                 <NavLink
                     to='/movies-app/'

@@ -2,8 +2,8 @@ import './CurrentItem.sass'
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getItem, CLEAR_ITEM } from '../../Redux/actions'
-import Loading from '../../assets/Loading'
+import { getItem, CLEAR_ITEM } from '../../redux/actions'
+import Loading from '../Loading'
 
 const mapState = ({ currentItem }) => {
     return {

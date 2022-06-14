@@ -15,8 +15,8 @@ const ContentItem = ({ data, lastElemRef }) => {
         const { rating, image, id, type } = item
         let { title } = item
 
-        if (title.length > 32) {
-            title = title.slice(0, 32) + '...'
+        if (title.length > 30) {
+            title = title.slice(0, 30) + '...'
         }
 
         const isLastElem = data.length - 1 === i ? lastElemRef : null

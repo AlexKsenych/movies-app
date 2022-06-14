@@ -57,6 +57,7 @@ const getItem = (type, id) => {
                 popularity,
                 backdrop_path,
                 release_date,
+                first_air_date,
                 vote_average,
             } = res
 
@@ -69,15 +70,13 @@ const getItem = (type, id) => {
                 image,
                 overview,
                 popularity,
-                date: release_date,
+                date: release_date ? release_date : first_air_date,
                 rating: vote_average,
             }
         })
 }
 
 export default function getData(type, id, query) {
-    console.log(type)
-
     switch (type) {
         case 'search':
             return getList('search/multi', id, query)

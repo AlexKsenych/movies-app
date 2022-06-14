@@ -4,19 +4,21 @@ import {
     CLEAR_LIST,
     SET_LIST,
     ADD_LIST,
-} from '../../Redux/actions'
+} from '../../redux/actions'
 import './Content.sass'
 import { connect } from 'react-redux'
 import ContentItem from './ContentItem'
 import ContentSelect from './ContentSelect'
-import Loading from '../../assets/Loading'
-import { useSearchParams, useMatch } from 'react-router-dom'
+import Loading from '../Loading'
+import { useSearchParams, useLocation, useMatch } from 'react-router-dom'
 
 const mapState = ({ itemList: { data, hasMore } }) => {
     return {
         data: [...new Set(data)],
         hasMore,
+        Loading,
         ContentItem,
+        ContentSelect,
     }
 }
 
@@ -34,12 +36,16 @@ const Content = ({
     getList,
     addList,
     clearList,
+    Loading,
     ContentItem,
+    ContentSelect,
 }) => {
     const [loading, setLoading] = useState(true)
     const [select, setSelect] = useState('popular')
     const [searchParams] = useSearchParams()
     const query = searchParams.get('query')
+
+    const location = useLocation()
 
     const isTV = !!useMatch('/movies-app/tv'),
         isSearch = !!useMatch('/movies-app/search')
@@ -67,7 +73,7 @@ const Content = ({
         getList(requestType)
         return clearList
         // eslint-disable-next-line
-    }, [select, requestType])
+    }, [select, location])
 
     useEffect(() => {
         if (query) {
