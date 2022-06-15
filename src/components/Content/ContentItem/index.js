@@ -1,14 +1,22 @@
 import React from 'react'
-import { useMatch, useNavigate } from 'react-router-dom'
+import noDataFoundImg from '../../../assets/no_data_found.png'
+import { useNavigate } from 'react-router-dom'
 
 const ContentItem = ({ data, lastElemRef }) => {
     const navigate = useNavigate()
-    const pathMatch = !!useMatch('/movies-app/tv')
+
+    if (!data.length) {
+        return (
+            <img
+                className='content__img'
+                src={noDataFoundImg}
+                alt='No Data Found'
+            />
+        )
+    }
 
     const navigateTo = (id, type) => {
-        const path = pathMatch ? 'tv' : 'movie'
-
-        navigate(`/movies-app/${type ? type : path}/${id}`, { replace: true })
+        navigate(`/movies-app/${type}/${id}`, { replace: true })
     }
 
     return data.map((item, i) => {

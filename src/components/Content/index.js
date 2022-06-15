@@ -14,7 +14,7 @@ import { useSearchParams, useLocation, useMatch } from 'react-router-dom'
 
 const mapState = ({ itemList: { data, hasMore } }) => {
     return {
-        data: [...new Set(data)],
+        data,
         hasMore,
         Loading,
         ContentItem,
@@ -70,6 +70,10 @@ const Content = ({
     )
 
     useEffect(() => {
+        setSelect('popular')
+    }, [location])
+
+    useEffect(() => {
         getList(requestType)
         return clearList
         // eslint-disable-next-line
@@ -86,10 +90,6 @@ const Content = ({
         if (data) return setLoading(false)
         setLoading(true)
     }, [data])
-
-    useEffect(() => {
-        setSelect('popular')
-    }, [isTV])
 
     const onSelect = (e) => {
         setSelect(e.target.value)

@@ -16,14 +16,7 @@ const getList = (type, pageId, query) => {
         })
         .then((res) => {
             const data = res.data.map((item) => {
-                const {
-                    title,
-                    name,
-                    media_type,
-                    vote_average,
-                    backdrop_path,
-                    id,
-                } = item
+                const { title, name, vote_average, backdrop_path, id } = item
 
                 const image = backdrop_path
                     ? `https://image.tmdb.org/t/p/w500${backdrop_path}`
@@ -31,8 +24,7 @@ const getList = (type, pageId, query) => {
 
                 return {
                     title: title ? title : name,
-                    name,
-                    type: media_type,
+                    type: name ? 'tv' : 'movie',
                     rating: vote_average,
                     image,
                     id,
