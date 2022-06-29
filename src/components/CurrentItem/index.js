@@ -37,18 +37,18 @@ const CurrentItem = ({
     }, [id])
 
     return title ? (
-        <main className='currentFilm'>
-            <img className='currentFilm__img' src={image} alt='filmImage' />
-            <div className='currentFilm__descr'>
-                <div className='currentFilm__descr__title'>{title}</div>
-                <div className='currentFilm__descr__date'>{date}</div>
-                <div className='currentFilm__descr__owerview'>{overview}</div>
+        <main className='currentItem'>
+            <img className='currentItem__img' src={image} alt='ItemImage' />
+            <div className='currentItem__descr'>
+                <div className='currentItem__descr__title'>{title}</div>
+                <div className='currentItem__descr__date'>{date}</div>
+                <div className='currentItem__descr__owerview'>{overview}</div>
             </div>
-            <div className='currentFilm__rating'>
-                <div className='currentFilm__rating__rate'>
+            <div className='currentItem__rating'>
+                <div className='currentItem__rating__rate'>
                     Rating: {rating}
                 </div>
-                <div className='currentFilm__rating__popularity'>
+                <div className='currentItem__rating__popularity'>
                     Popularity: {popularity}
                 </div>
             </div>

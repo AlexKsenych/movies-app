@@ -11,3 +11,57 @@ body
 
 code
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace
+
+.hidden
+  display: none
+
+@media only screen and ( max-width: 993px )
+  body
+    .header
+      &__logo
+        display: none
+        &_mini
+          display: block
+    .currentItem
+      grid-template-columns: 415px 1fr
+      grid-template-rows: 290px 30px
+      &__img
+        width: 400px
+        max-height: 250px
+
+@media only screen and ( max-width: 769px )
+  body
+    .header
+      &__search
+        position: absolute
+        top: 8
+        right: 0
+        width: 35px
+        height: 35px
+        margin-right: 10px
+        padding-right: 8px
+        background: url("./assets/search-icon.svg") 50% 50% no-repeat #cccccc
+        &:focus
+          width: 225px
+          padding-right: 35px
+          background: url("./assets/search-icon.svg") 97% 50% no-repeat #cccccc
+      &__container
+        display: block
+
+    .currentItem
+      grid-template-columns: 315px 1fr
+      grid-template-rows: 260px 30px
+      &__img
+        width: 300px
+        max-height: 200px
+
+@media only screen and ( max-width: 577px )
+  body
+    .currentItem
+      grid-template-columns: 197px 1fr
+      grid-template-rows: 260px 30px
+      &__img
+        width: 190px
+        max-height: 200px
+      &__rating
+        display: block

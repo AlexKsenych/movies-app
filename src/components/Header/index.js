@@ -13,6 +13,9 @@ const Header = () => {
             <NavLink to='/movies-app/' className='header__logo'>
                 MOVIES-APP
             </NavLink>
+            <NavLink to='/movies-app/' className='header__logo_mini hidden'>
+                M
+            </NavLink>
             <nav className='header__nav'>
                 <NavLink
                     to='/movies-app/'
@@ -28,6 +31,7 @@ const Header = () => {
                 </NavLink>
             </nav>
             <HeaderSearch />
+            <div className='header__container hidden'></div>
         </header>
     )
 }

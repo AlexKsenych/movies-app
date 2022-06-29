@@ -5,6 +5,7 @@
     display: flex
     justify-content: space-between
     align-items: center
+    position: relative
     &__logo
         width: 150px
         height: 100%
@@ -13,6 +14,14 @@
         color: #000
         text-align: center
         text-decoration: none
+        &_mini
+            width: 40px
+            height: 100%
+            padding: 4px 0 0
+            font-size: 30px
+            color: #000
+            text-align: center
+            text-decoration: none
     &__nav
         display: flex
         width: 240px
@@ -41,15 +50,16 @@
     &__search
         width: 265px
         height: 80%
-        position: relative
         margin-right: 25px
         padding: 8px
-        background-color: #cccccc
+        padding-right: 35px
+        background: url("../../assets/search-icon.svg") 97% 50% no-repeat #cccccc
         border: none
         border-radius: 25px
         transition: 0.7s all
         &:focus
             outline: none
             box-shadow: 2px 2px 5px #666666
-
-            // url('../../assets/search-icon.svg')
+    &__container
+        width: 42px
+        height: 100%
