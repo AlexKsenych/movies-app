@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useMatch, useNavigate } from 'react-router-dom'
 
 const Search = () => {
-    const [, setSearchParams] = useSearchParams({})
     const [query, setQuery] = useState('')
     const navigate = useNavigate()
+    const isSearch = !!useMatch('/movies-app/search')
 
     useEffect(() => {
         if (query.length >= 3) {
-            setSearchParams({ query })
-        }
-
-        if (query.length === 3) {
             navigate(`/movies-app/search?query=${query}`, { replace: true })
         }
+
         // eslint-disable-next-line
     }, [query])
+
+    useEffect(() => {
+        if (!isSearch) setQuery('')
+    }, [isSearch])
 
     const onInput = (e) => {
         const value = e.currentTarget.value
